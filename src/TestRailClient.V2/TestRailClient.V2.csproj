@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ycode.TestRailClient.V2</RootNamespace>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageId>Ycode.TestRail.V2</PackageId>
+    <PackageVersion>1.0.0-beta.1</PackageVersion>
+    <Authors>Yas Ikeda (ycode.laboratory@gmail.com)</Authors>
+    <ReleaseVersion>1.0.0-beta.1</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageTags>TestRail,Test</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="." />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+  </ItemGroup>
+</Project>

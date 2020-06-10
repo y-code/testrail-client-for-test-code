@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ycode.TestRailClient.V2.NUnit</RootNamespace>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageId>Ycode.TestRail.V2.NUnit</PackageId>
+    <PackageVersion>1.0.0-beta.1</PackageVersion>
+    <Authors>Yas Ikeda (ycode.laboratory@gmail.com)</Authors>
+    <ReleaseVersion>1.0.0-beta.1</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageTags>TestRail,Test,NUnit</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="." />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <ProjectReference Include="..\TestRailClient.V2\TestRailClient.V2.csproj" />
+  </ItemGroup>
+</Project>
