@@ -14,7 +14,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/y-code/testrail-client-for-test-code</PackageProjectUrl>
     <PackageProjectType>GitHub</PackageProjectType>
-    <IconUrl>https://raw.githubusercontent.com/y-code/testrail-client-for-test-code/master/src/TestRailClient.V2.NUnit/Images/icon.png</IconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/y-code/testrail-client-for-test-code/master/src/TestRailClient.V2.NUnit/Images/icon.png</PackageIconUrl>
     <Title>TestRail Client for Test Code</Title>
     <Description>
       Ycode.TestRailClient.V2.NUnit provides a TestRail API v2 client dedicated to the usage in NUnit test code.
