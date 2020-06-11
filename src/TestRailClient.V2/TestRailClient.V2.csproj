@@ -2,15 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Ycode.TestRailClient.V2</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>Ycode.TestRail.V2</PackageId>
+    <RootNamespace>Ycode.TestRailClient.V2</RootNamespace>
+        
+    <PackageId>Ycode.TestRailClient.V2</PackageId>
     <PackageVersion>1.0.0-beta.1</PackageVersion>
-    <Authors>Yas Ikeda (ycode.laboratory@gmail.com)</Authors>
     <ReleaseVersion>1.0.0-beta.1</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
+    <Authors>Yas Ikeda (ycode.laboratory@gmail.com)</Authors>
     <PackageTags>TestRail,Test</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/y-code/testrail-client-for-test-code</PackageProjectUrl>
+    <PackageProjectType>GitHub</PackageProjectType>
+    <IconUrl>https://raw.githubusercontent.com/y-code/testrail-client-for-test-code/master/src/TestRailClient.V2/Images/icon.png</IconUrl>
+    <Title>TestRail Client for Test Code</Title>
+    <Description>
+      Ycode.TestRailClient.V2 provides a TestRail API v2 client dedicated to the usage in test code.
+      This library implements functionalities typically required to integrate your test code with TestRail.
+      For this sake, it never tries to cover all the TestRail API v2.
+    </Description>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
