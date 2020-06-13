@@ -8,7 +8,60 @@ namespace Ycode.TestRailClient.V2.CodeSample
     public class TestRailClientCodeSample
     {
         [Test]
-        public async Task Test()
+        public async Task Simple()
+        {
+            const int projectId = 10000;
+            const int suiteId = 100;
+
+            var caseIds = new[] { 789, 790, 791 };
+            var version = "v2.3.1";
+
+            var client = new TestRailClient(
+                new TestRailClientConfiguration
+                {
+                    Url = "https://localhost:62182",
+                    UserName = "taro.yamada",
+                    AppKey = "aiueo-kakikukeko-sasisuseso",
+                });
+
+            await client.StartTestRunAsync(
+                new TestRailRunInfo
+                {
+                    ProjectId = projectId,
+                    SuiteId = suiteId,
+                    Name = "Test Run Sample",
+                });
+
+            try
+            {
+                // Execute a test
+            }
+            catch (Exception e)
+            {
+                await client.RecordResultAsync(
+                    caseIds,
+                    new TestResult
+                    {
+                        Status = "Failed",
+                        Version = version,
+                        Comment = e.Message,
+                    });
+                throw;
+            }
+
+            await client.RecordResultAsync(
+                caseIds,
+                new TestResult
+                {
+                    Status = "Passed",
+                    Version = version,
+                });
+
+            await client.EndTestRunAsync();
+        }
+
+        [Test]
+        public async Task CaseFilter()
         {
             var client = new TestRailClient(
                 new TestRailClientConfiguration

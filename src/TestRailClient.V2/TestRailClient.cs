@@ -66,8 +66,6 @@ namespace Ycode.TestRailClient.V2
                     + "Please end it before starting another. Or, initialize and use another client instance.");
             }
 
-        	await _apiClient.GetStatusesAsync();
-        	await _apiClient.GetPrioritiesAsync();
         	var cases = await _apiClient.GetCasesAsync(runInfo.ProjectId, runInfo.SuiteId);
 
         	if (!_apiClient.Cases.Any())
@@ -220,12 +218,20 @@ namespace Ycode.TestRailClient.V2
                 	continue;
                 }
 
-            	results.Add(await _apiClient.AddResultForCaseAsync(
+                var status = _apiClient.Statuses[result.Status];
+
+                if (status == TestRailStatus.Dummy)
+                {
+                    throw new TestRailClientException($"Status \"{result.Status}\" is invalid. Valid statuses: "
+                        + Statuses.Keys.DefaultIfEmpty().Aggregate((a, b) => $"{a}, {b}"));
+                }
+
+                results.Add(await _apiClient.AddResultForCaseAsync(
                 	CurrentRun.Id,
                 	caseId,
                 	new TestRailResultInfo
                     {
-                    	Status = _apiClient.Statuses[result.Status],
+                    	Status = status,
                         Version = result.Version,
                         Comment = result.Comment,
                         Defects = result.Defects.DefaultIfEmpty().Aggregate((a, b) => $"{a},{b}"),

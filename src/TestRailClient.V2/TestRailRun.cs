@@ -39,7 +39,7 @@ namespace Ycode.TestRailClient.V2
         [JsonPropertyName("description")]
     	public string Description { get; set; }
         [JsonPropertyName("include_all")]
-    	public bool IncludeAll { get; set; }
+        public bool IncludeAll { get; set; } = true;
         [JsonPropertyName("refs")]
     	public string Refs { get; set; }
         [JsonPropertyName("id")]

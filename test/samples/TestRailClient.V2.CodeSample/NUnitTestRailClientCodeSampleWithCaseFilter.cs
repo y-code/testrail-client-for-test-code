@@ -6,7 +6,7 @@ using Ycode.TestRailClient.V2.NUnit;
 namespace Ycode.TestRailClient.V2.CodeSample
 {
     [SetUpFixture]
-    public class SetUp
+    public class SetUpWithCaseFilter
     {
         public static NUnitTestRailClient TestRailClient { get; private set; }
 
@@ -49,7 +49,7 @@ namespace Ycode.TestRailClient.V2.CodeSample
     }
 
     [TestFixture]
-    public class NUnitTestRailClientCodeSample
+    public class NUnitTestRailClientCodeSampleWithCaseFilter
     {
         NUnitTestRailClient TestRailClient => SetUp.TestRailClient;
 

@@ -11,7 +11,6 @@ namespace Ycode.TestRailClient.V2
 
     public class TestRailClientConfiguration : TestRailApiClientConfiguration
     {
-    	//public const string Name = "TestRailClient";
     	public bool Disabled { get; set; } = false;
     	public List<ITestRailCaseFilter> CaseFilters { get; set; } = new List<ITestRailCaseFilter>();
     }
