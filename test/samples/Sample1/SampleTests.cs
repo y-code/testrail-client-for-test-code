@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NUnit.Framework;
 using Ycode.TestRailClient.V2;
 using Ycode.TestRailClient.V2.NUnit;
@@ -55,6 +56,27 @@ namespace Sample1
         public void Test5(int param1, string param2)
         {
             Assert.Fail();
+        }
+
+        [TestCaseSource(typeof(TestCaseSource), "TestCases")]
+        public int Test6(int n, int d)
+        {
+            return n / d;
+        }
+
+        public class TestCaseSource
+        {
+            public static IEnumerable<TestCaseData> TestCases
+            {
+                get
+                {
+                    yield return new TestCaseData(12, 3).Returns(4) // to pass
+                        .AddTestRailCase(10112);
+                    yield return new TestCaseData(12, 2).Returns(5) // to fail
+                        .AddTestRailCase(10113)
+                        .AddTestRailCase(10114);
+                }
+            }
         }
     }
 }

@@ -154,6 +154,39 @@ namespace Ycode.TestRailClient.Test.ApiMock.Controllers
                             TypeId = 1,
                             Refs = null,
                         },
+                        new CaseV2
+                        {
+                            Id = 10112,
+                            SuiteId = 100,
+                            SectionId = 5,
+                            TemplateId = 1,
+                            Title = "Test 12",
+                            PriorityId = 5,
+                            TypeId = 1,
+                            Refs = null,
+                        },
+                        new CaseV2
+                        {
+                            Id = 10113,
+                            SuiteId = 100,
+                            SectionId = 5,
+                            TemplateId = 1,
+                            Title = "Test 13",
+                            PriorityId = 5,
+                            TypeId = 1,
+                            Refs = null,
+                        },
+                        new CaseV2
+                        {
+                            Id = 10114,
+                            SuiteId = 100,
+                            SectionId = 5,
+                            TemplateId = 1,
+                            Title = "Test 14",
+                            PriorityId = 5,
+                            TypeId = 1,
+                            Refs = null,
+                        },
                     },
                     200 => new[]
                     {
