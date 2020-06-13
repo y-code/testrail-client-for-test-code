@@ -145,7 +145,7 @@ namespace Ycode.TestRailClient.V2.NUnit
             	elapsed: stopwatch?.Elapsed);
         }
 
-    	public async Task<List<TestRailResult>> RecordResultAsync(TestContext context, string version = null, string comment = null, TimeSpan? elapsed = null)
+    	protected async Task<List<TestRailResult>> RecordResultAsync(TestContext context, string version = null, string comment = null, TimeSpan? elapsed = null)
         {
         	var (caseIds, defects) = ReadAttributesOnTest(context);
 
