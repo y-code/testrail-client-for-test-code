@@ -1,9 +1,18 @@
 ﻿# TestRail Client for Test Code
+
 Ycode.TestRailClient.V2 provides a TestRail API v2 client dedicated to the usage in test code.
 
 This library implements functionalities typically required to integrate your test code with TestRail. For this sake, it never tries to cover all the TestRail API v2.
 
-# Code Sample
+# Quick Start
+
+With the code sample below, you start a test run and then close it after recording a test result.
+
+    const int projectId = 10000;
+    const int suiteId = 100;
+
+    var caseIds = new[] { 789, 790, 791 };
+    var version = "v2.3.1";
 
     var client = new TestRailClient(
         new TestRailClientConfiguration
@@ -11,44 +20,39 @@ This library implements functionalities typically required to integrate your tes
             Url = "https://localhost:62182",
             UserName = "taro.yamada",
             AppKey = "aiueo-kakikukeko-sasisuseso",
-            CaseFilters =
-            {
-                new TestRailPriorityCaseFilter("P2"),
-            },
         });
 
     await client.StartTestRunAsync(
         new TestRailRunInfo
         {
-            ProjectId = 10000,
-            SuiteId = 100,
+            ProjectId = projectId,
+            SuiteId = suiteId,
             Name = "Test Run Sample",
-            Description = "This is just a sample. Take it easy~.",
-            IncludeAll = true,
         });
 
-    var targetCaseIds = new[] { 789, 790, 791 };
-
-    string testStatus = null;
-    if (client.IsTestRequiredFor(targetCaseIds))
+    try
     {
         // Execute a test
-        testStatus = "Failed";
     }
-
-    foreach (var (isFilteredCases, caseIds) in client.SplitCaseIdsByFilter(targetCaseIds))
+    catch (Exception e)
     {
         await client.RecordResultAsync(
             caseIds,
             new TestResult
             {
-                Status = isFilteredCases ? testStatus : "Blocked",
-                Version = "v2.3.1",
-                Comment = "This test failed. The actual result was ...",
-                Defects = { "ASD-8437", "ADS-9852" },
-                Elapsed = TimeSpan.FromMilliseconds(2938),
+                Status = "Failed",
+                Version = version,
+                Comment = e.Message,
             });
+        throw;
     }
 
+    await client.RecordResultAsync(
+        caseIds,
+        new TestResult
+        {
+            Status = "Passed",
+            Version = version,
+        });
 
     await client.EndTestRunAsync();

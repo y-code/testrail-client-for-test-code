@@ -1,9 +1,12 @@
 ﻿# TestRail Client for NUnit Test Code
+
 Ycode.TestRailClient.V2.NUnit provides a TestRail API v2 client dedicated to the usage in NUnit test code.
 
 This library implements functionalities typically required to integrate your NUnit test code with TestRail.
 
-# Code Sample
+# Quick Start
+
+With the code sample below, you start a test run and then close it after recording some test results.
 
     [SetUpFixture]
     public class SetUp
@@ -19,16 +22,6 @@ This library implements functionalities typically required to integrate your NUn
                     Url = "https://localhost:62182",
                     UserName = "taro.yamada",
                     AppKey = "aiueo-kakikukeko-sasisuseso",
-                    CaseFilters =
-                    {
-                        new TestRailPriorityCaseFilter("P2"),
-                    },
-                    StatusMapping =
-                    {
-                        Warning = "Caution",
-                        WithDefect = "Known Issue",
-                        FilteringResidue = "Excluded",
-                    }
                 });
             await TestRailClient.StartTestRunAsync(
                 new TestRailRunInfo
@@ -36,8 +29,6 @@ This library implements functionalities typically required to integrate your NUn
                     ProjectId = 10000,
                     SuiteId = 100,
                     Name = "Test Run Sample",
-                    Description = "This is just a sample. Take it easy~.",
-                    IncludeAll = true,
                 });
         }
 
@@ -48,35 +39,30 @@ This library implements functionalities typically required to integrate your NUn
         }
     }
 
-    [TestFixture]
-    public class NUnitTestRailClientCodeSample
+    public class TestBase
     {
-        NUnitTestRailClient TestRailClient => SetUp.TestRailClient;
+        NUnitTestRailClient _testRailClient => SetUp.TestRailClient;
 
         [SetUp]
         public void Setup()
         {
-            TestRailClient.SetUpSingleTest();
+            _testRailClient.SetUpSingleTest();
         }
 
         [TearDown]
         public async Task TearDown()
         {
-            await TestRailClient.TearDownSingleTest();
+            await _testRailClient.TearDownSingleTest();
         }
+    }
 
+    [TestFixture]
+    public class NUnitTestRailClientCodeSample : TestBase
+    {
         [Test]
         [TestRailCase(10101)]
-        [TestRailCase(10103)]
         public void Test1()
         {
             Assert.Pass();
-        }
-
-        [TRTestCase("param1", Case = 10109, Defect = "ASD-123")]
-        [TRTestCase("param2", Cases = new[] { 10110, 10111 }, Defects = new[] { "ASD-456" })]
-        public void Test2(string param)
-        {
-            Assert.Fail();
         }
     }
